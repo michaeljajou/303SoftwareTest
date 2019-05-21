@@ -10,13 +10,27 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet var tableView: UITableView!
+    
+    // Temporary array while setting up table view
+    var data: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        print("Test code here")
     }
+}
 
-
+extension ViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "dataCell", for: indexPath)
+        cell.textLabel?.text = "Hello"
+        return cell
+    }
+    
+    
 }
 
