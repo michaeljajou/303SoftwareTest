@@ -15,8 +15,17 @@ class ViewController: UIViewController {
     // Temporary array while setting up table view
     var data: [String] = []
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let url = URL(string: "http://www.filltext.com/?rows=100&fname=%7BfirstName%7D&lname=%7BlastName%7D&city=%7Bcity%7D&pretty=true") {
+            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                guard let data = data else { return }
+                print(String(data: data, encoding: .utf8)!)
+            }
+            
+            task.resume()
+        }
     }
 }
 
